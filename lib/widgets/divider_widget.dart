@@ -1,4 +1,6 @@
+import 'package:fiveminslearn/widgets/default_divider_widget.dart';
 import 'package:fiveminslearn/widgets/text_widget.dart';
+
 import 'package:flutter/material.dart';
 
 class DividerWidget extends StatelessWidget {
@@ -13,7 +15,7 @@ class DividerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Expanded(child: Divider()),
+        const Expanded(child: DefaultDividerWidget()),
         text != null
             ? Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 8.0),
@@ -23,7 +25,7 @@ class DividerWidget extends StatelessWidget {
                 ),
               )
             : const SizedBox(),
-        text != null ? const Expanded(child: Divider()) : const SizedBox(),
+        text != null ? const Expanded(child: DefaultDividerWidget()) : const SizedBox(),
       ],
     );
   }
