@@ -1,4 +1,5 @@
-import 'package:fiveminslearn/screens/login.dart';
+import 'package:fiveminslearn/screens/splash.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Login(),
+      home: const Splash(),
     );
   }
 }
