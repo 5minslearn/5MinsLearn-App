@@ -1,13 +1,14 @@
-import 'dart:developer';
+import 'package:fiveminslearn/navigation/home_bottom_navigation_bar.dart';
 
 import 'package:fiveminslearn/screens/register.dart';
+
 import 'package:fiveminslearn/utils/form_validation.dart';
-import 'package:fiveminslearn/utils/ui.dart';
 import 'package:fiveminslearn/widgets/button_widget.dart';
 import 'package:fiveminslearn/widgets/divider_widget.dart';
 import 'package:fiveminslearn/widgets/header_widget.dart';
 import 'package:fiveminslearn/widgets/text_field_widget.dart';
 import 'package:fiveminslearn/widgets/text_widget.dart';
+
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -68,7 +69,7 @@ class _LoginState extends State<Login> {
   }
 
   void login() {
-    showAlertDialog(context, "login success");
+    goToHome();
     resetForm();
   }
 
@@ -99,7 +100,14 @@ class _LoginState extends State<Login> {
   }
 
   void onSkipLogin() {
-    log("on skip login");
+    goToHome();
+  }
+
+  void goToHome() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const HomeBottomNavigationBar()),
+    );
   }
 
   @override
