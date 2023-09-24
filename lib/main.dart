@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       title: '5MinsLearn',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        useMaterial3: true,
       ),
       home: const Splash(),
     );
