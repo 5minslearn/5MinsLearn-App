@@ -14,12 +14,18 @@ class TextWidget extends StatefulWidget {
   final String text;
   final TextStyle? style;
   final TextVariant variant;
+  final int? maxLines;
+  final TextOverflow? overflow;
+  final bool? softWrap;
 
   const TextWidget({
     super.key,
     required this.text,
     this.style,
     this.variant = TextVariant.text,
+    this.maxLines,
+    this.overflow,
+    this.softWrap,
   });
 
   @override
@@ -66,6 +72,9 @@ class _TextWidgetState extends State<TextWidget> {
       style: variant[widget.variant],
       child: Text(
         widget.text,
+        maxLines: widget.maxLines,
+        overflow: widget.overflow ?? TextOverflow.ellipsis,
+        softWrap: widget.softWrap ?? true,
         style: widget.style,
       ),
     );
