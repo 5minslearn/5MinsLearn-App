@@ -1,3 +1,5 @@
+import 'package:fiveminslearn/screens/blog/blog_list.dart';
+import 'package:fiveminslearn/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeBottomNavigationBar extends StatefulWidget {
@@ -10,7 +12,21 @@ class HomeBottomNavigationBar extends StatefulWidget {
 class _HomeBottomNavigationBarState extends State<HomeBottomNavigationBar> {
   int selectedIndex = 0;
 
-  final List<Widget> screens = const [Text("Home"), Text("Videos"), Text("Profile")];
+  final List<Widget> screens = const [
+    BlogList(),
+    Center(
+      child: TextWidget(
+        text: "Videos",
+        variant: TextVariant.title,
+      ),
+    ),
+    Center(
+      child: TextWidget(
+        text: "Profile",
+        variant: TextVariant.title,
+      ),
+    ),
+  ];
 
   void onBottomTapTapped(int index) {
     setState(() {
