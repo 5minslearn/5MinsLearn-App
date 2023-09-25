@@ -1,3 +1,4 @@
+import 'package:fiveminslearn/fragments/blog_view_fragment.dart';
 import 'package:fiveminslearn/widgets/blog/blog_action_widget.dart';
 import 'package:fiveminslearn/widgets/card_widget.dart';
 import 'package:fiveminslearn/widgets/divider_widget.dart';
@@ -41,7 +42,9 @@ class BlogCardWidget extends StatelessWidget {
 
   const BlogCardWidget({super.key, this.blog});
 
-  void onPress() {}
+  void onPress(BuildContext context) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => BlogViewFragment(url: blog!.url!)));
+  }
 
   @override
   Widget build(BuildContext context) {

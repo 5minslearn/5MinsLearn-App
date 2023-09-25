@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CardWidget extends StatelessWidget {
   final Widget? child;
-  final Function? onPress;
+  final Function(BuildContext context)? onPress;
   final Color? color;
   final ShapeBorder? shape;
 
@@ -18,7 +18,7 @@ class CardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     void onTap() {
       try {
-        onPress!();
+        onPress!(context);
       } catch (e) {
         //
       }
