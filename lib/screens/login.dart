@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:fiveminslearn/navigation/home_bottom_navigation_bar.dart';
 
 import 'package:fiveminslearn/screens/register.dart';
@@ -12,7 +14,9 @@ import 'package:fiveminslearn/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  final Function login;
+
+  const Login({super.key, required this.login});
 
   @override
   State<Login> createState() => _LoginState();
@@ -69,7 +73,10 @@ class _LoginState extends State<Login> {
   }
 
   void login() {
-    goToHome();
+    // goToHome();
+    widget.login({
+      "input": {email, password}
+    });
     resetForm();
   }
 

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fiveminslearn/containers/login_container.dart';
 import 'package:fiveminslearn/screens/login.dart';
 import 'package:fiveminslearn/widgets/text_widget.dart';
 
@@ -26,7 +27,7 @@ class _SplashState extends State<Splash> {
       () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const Login(),
+          builder: (context) => const LoginContainer(),
         ),
       ),
     );
