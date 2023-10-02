@@ -24,25 +24,19 @@ void main() async {
       cache: GraphQLCache(store: HiveStore()),
     ),
   );
-  runApp(MyApp(
-    graphqlClient: graphqlClient,
-  ));
+
+  runApp(MyApp(graphqlClient: graphqlClient));
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   final ValueNotifier<GraphQLClient> graphqlClient;
 
   const MyApp({super.key, required this.graphqlClient});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
   Widget build(BuildContext context) {
     return GraphQLProvider(
-      client: widget.graphqlClient,
+      client: graphqlClient,
       child: MaterialApp(
         title: '5MinsLearn',
         theme: ThemeData(

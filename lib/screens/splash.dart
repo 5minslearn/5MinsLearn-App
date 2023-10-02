@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:fiveminslearn/containers/login_container.dart';
-import 'package:fiveminslearn/screens/login.dart';
 import 'package:fiveminslearn/widgets/text_widget.dart';
 
 import 'package:flutter/material.dart';

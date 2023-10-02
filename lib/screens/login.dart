@@ -1,4 +1,4 @@
-import 'dart:ffi';
+import 'dart:developer';
 
 import 'package:fiveminslearn/navigation/home_bottom_navigation_bar.dart';
 
@@ -23,8 +23,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  String email = '';
-  String password = '';
+  String email = 'abiraman@gogosoon.com';
+  String password = '12345678';
   String? emailError;
   String? passwordError;
   bool isLoading = false;
@@ -74,10 +74,14 @@ class _LoginState extends State<Login> {
 
   void login() {
     // goToHome();
-    widget.login({
-      "input": {email, password}
-    });
-    resetForm();
+    try {
+      widget.login({
+        "input": {email, password}
+      });
+    } catch (e) {
+      log("gql login error: $e");
+    }
+    // resetForm();
   }
 
   void resetForm() {
