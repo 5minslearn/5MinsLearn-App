@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dropdown_alert/alert_controller.dart';
+import 'package:flutter_dropdown_alert/model/data_alert.dart';
 
 Future<void> showAlertDialog(BuildContext context, message) async {
   return showDialog<void>(
@@ -18,4 +20,8 @@ Future<void> showAlertDialog(BuildContext context, message) async {
       );
     },
   );
+}
+
+void showNotify({String? title, String? message, TypeAlert type = TypeAlert.success}) {
+  AlertController.show(title ?? "", message ?? "", type);
 }

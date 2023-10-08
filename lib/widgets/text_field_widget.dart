@@ -109,6 +109,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                   controller: _controller,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
+                    focusedBorder: const OutlineInputBorder(borderSide: BorderSide(width: 2, color: Colors.blue)),
                     suffixIcon: widget.isObscureText
                         ? isObscureTextVisible
                             ? IconButton(
