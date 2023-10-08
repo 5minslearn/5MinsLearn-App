@@ -3,10 +3,13 @@ import 'package:fiveminslearn/constants.dart' as constants;
 import 'package:fiveminslearn/utils/function.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_dropdown_alert/dropdown_alert.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 void main() async {
+  await dotenv.load(fileName: ".env");
+
   await initHiveForFlutter();
 
   final HttpLink httpLink = HttpLink(

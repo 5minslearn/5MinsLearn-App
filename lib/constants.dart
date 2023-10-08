@@ -1,7 +1,10 @@
 // ignore_for_file: constant_identifier_names
+// ignore_for_file: non_constant_identifier_names
+
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // Api
-const String GRAPHQL_ENDPOINT = "http://192.168.43.211:8000/dev/graphql";
+final String GRAPHQL_ENDPOINT = dotenv.env['GRAPHQL_ENDPOINT']!;
 
 // Local storage path
 const String LOCAL_STORAGE_PATH = "five_minutes_learn.json";
