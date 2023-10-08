@@ -1,9 +1,3 @@
-import 'dart:developer';
-
-import 'package:fiveminslearn/navigation/home_bottom_navigation_bar.dart';
-
-import 'package:fiveminslearn/screens/register.dart';
-
 import 'package:fiveminslearn/utils/form_validation.dart';
 import 'package:fiveminslearn/widgets/button_widget.dart';
 import 'package:fiveminslearn/widgets/divider_widget.dart';
@@ -12,11 +6,15 @@ import 'package:fiveminslearn/widgets/text_field_widget.dart';
 import 'package:fiveminslearn/widgets/text_widget.dart';
 
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 class Login extends StatefulWidget {
   final Function login;
+  final Function onSkipLogin;
+  final VoidCallback onPressRegister;
+  final QueryResult? result;
 
-  const Login({super.key, required this.login});
+  const Login({super.key, required this.login, required this.onSkipLogin, required this.onPressRegister, this.result});
 
   @override
   State<Login> createState() => _LoginState();
@@ -27,8 +25,12 @@ class _LoginState extends State<Login> {
   String password = '12345678';
   String? emailError;
   String? passwordError;
-  bool isLoading = false;
   ValueNotifier<bool> reset = ValueNotifier<bool>(false);
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -49,18 +51,6 @@ class _LoginState extends State<Login> {
     });
   }
 
-  void startLoader() {
-    setState(() {
-      isLoading = true;
-    });
-  }
-
-  void stopLoader() {
-    setState(() {
-      isLoading = false;
-    });
-  }
-
   void onSubmit() async {
     setState(() {
       emailError = validateEmail(email);
@@ -73,15 +63,9 @@ class _LoginState extends State<Login> {
   }
 
   void login() {
-    // goToHome();
-    try {
-      widget.login({
-        "input": {email, password}
-      });
-    } catch (e) {
-      log("gql login error: $e");
-    }
-    // resetForm();
+    widget.login({
+      "input": {"email": email, "password": password}
+    });
   }
 
   void resetForm() {
@@ -97,28 +81,6 @@ class _LoginState extends State<Login> {
     Future.delayed(const Duration(seconds: 1), () {
       reset.value = false;
     });
-  }
-
-  void onPressRegister() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const Register()),
-    );
-  }
-
-  void goBack() {
-    Navigator.pop(context);
-  }
-
-  void onSkipLogin() {
-    goToHome();
-  }
-
-  void goToHome() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const HomeBottomNavigationBar()),
-    );
   }
 
   @override
@@ -173,7 +135,7 @@ class _LoginState extends State<Login> {
               ),
               ButtonWidget(
                 label: "Login",
-                isLoading: isLoading,
+                isLoading: widget.result?.isLoading ?? false,
                 onPressed: onSubmit,
               ),
               SizedBox(
@@ -188,7 +150,7 @@ class _LoginState extends State<Login> {
                       text: "Don't have an account?",
                     ),
                     TextButton(
-                      onPressed: onPressRegister,
+                      onPressed: widget.onPressRegister,
                       style: TextButton.styleFrom(padding: const EdgeInsets.all(0)),
                       child: const TextWidget(
                         variant: TextVariant.helper,
@@ -206,8 +168,7 @@ class _LoginState extends State<Login> {
               ),
               ButtonWidget(
                 label: "Skip Login",
-                // isLoading: isLoading,
-                onPressed: onSkipLogin,
+                onPressed: widget.onSkipLogin,
               ),
             ],
           ),

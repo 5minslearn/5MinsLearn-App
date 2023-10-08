@@ -1,3 +1,4 @@
+import 'package:fiveminslearn/containers/profile_container.dart';
 import 'package:fiveminslearn/screens/blog/blog_list.dart';
 import 'package:fiveminslearn/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +21,7 @@ class _HomeBottomNavigationBarState extends State<HomeBottomNavigationBar> {
         variant: TextVariant.title,
       ),
     ),
-    Center(
-      child: TextWidget(
-        text: "Profile",
-        variant: TextVariant.title,
-      ),
-    ),
+    ProfileContainer()
   ];
 
   void onBottomTapTapped(int index) {

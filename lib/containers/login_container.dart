@@ -1,7 +1,14 @@
+import 'dart:developer';
+
+import 'package:fiveminslearn/navigation/home_bottom_navigation_bar.dart';
 import 'package:fiveminslearn/screens/login.dart';
+import 'package:fiveminslearn/screens/register.dart';
+import 'package:fiveminslearn/utils/function.dart';
+import 'package:fiveminslearn/utils/ui.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_dropdown_alert/model/data_alert.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:http/http.dart' as http;
 
 class LoginContainer extends StatefulWidget {
   const LoginContainer({super.key});
@@ -37,29 +44,58 @@ class _LoginContainerState extends State<LoginContainer> {
       }
     }
   }
-""";
+  """;
 
   @override
   void initState() {
     super.initState();
-
-    fetchAlbum();
   }
 
-  Future<http.Response> fetchAlbum() {
-    return http.get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+  void onSkipLogin() {
+    goToHome();
+  }
+
+  void goToHome() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const HomeBottomNavigationBar()),
+    );
+  }
+
+  void onPressRegister() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const Register()),
+    );
+  }
+
+  void goBack() {
+    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Mutation(
       options: MutationOptions(
-        document: gql(login),
-      ),
+          document: gql(login),
+          onError: (OperationException? error) {
+            log("Login api error", error: error?.graphqlErrors[0].message);
+            showNotify(
+              title: "",
+              message: error!.graphqlErrors[0].message,
+              type: TypeAlert.error,
+            );
+          },
+          onCompleted: ((dynamic data) async {
+            if (data != null) {
+              await setUserAuthToken(data['login']['token']);
+              await setUserDetails(data['login']['user']);
+
+              goToHome();
+            }
+          })),
       builder: (RunMutation runMutation, QueryResult? result) {
-        return Login(
-          login: runMutation,
-        );
+        return Login(login: runMutation, onSkipLogin: onSkipLogin, onPressRegister: onPressRegister, result: result);
       },
     );
   }

@@ -1,14 +1,19 @@
 import 'package:localstorage/localstorage.dart';
-import "package:fiveminslearn/contants.dart" as constants;
+import 'package:fiveminslearn/constants.dart' as constants;
 
 class LocalStorageUtils {
   final LocalStorage storage = LocalStorage(constants.LOCAL_STORAGE_PATH);
 
-  void setItem(String key, dynamic value) {
-    storage.setItem(key, value);
+  Future<void> setItem(String key, dynamic value) async {
+    await storage.setItem(key, value);
   }
 
-  dynamic getItem(String key) {
+  Future<dynamic> getItem(String key) async {
+    await storage.ready;
     return storage.getItem(key);
+  }
+
+  Future<void> deleteItem(String key) async {
+    await storage.deleteItem(key);
   }
 }

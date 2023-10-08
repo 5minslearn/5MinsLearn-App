@@ -38,7 +38,7 @@ dependencies:
   webview_flutter: ^4.2.4
   graphql_flutter: ^5.1.2
   localstorage: ^4.0.1+4
-  http: ^0.13.6
+  flutter_dropdown_alert: ^1.0.7
 
 dev_dependencies:
   flutter_test:

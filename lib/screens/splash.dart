@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:fiveminslearn/containers/login_container.dart';
+import 'package:fiveminslearn/navigation/home_bottom_navigation_bar.dart';
+import 'package:fiveminslearn/utils/function.dart';
 import 'package:fiveminslearn/widgets/text_widget.dart';
 
 import 'package:flutter/material.dart';
@@ -20,15 +22,29 @@ class _SplashState extends State<Splash> {
     initCall();
   }
 
-  void initCall() async {
-    Timer(
-      const Duration(seconds: 3),
-      () => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const LoginContainer(),
-        ),
-      ),
+  void initCall() {
+    Timer(const Duration(seconds: 2), () async {
+      final String? token = await getUserAuthToken();
+
+      if (token != null && token.isNotEmpty) {
+        return goToHome();
+      }
+
+      goToLogin();
+    });
+  }
+
+  void goToHome() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const HomeBottomNavigationBar()),
+    );
+  }
+
+  void goToLogin() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginContainer()),
     );
   }
 
