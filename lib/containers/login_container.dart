@@ -5,6 +5,7 @@ import 'package:fiveminslearn/screens/login.dart';
 import 'package:fiveminslearn/screens/register.dart';
 import 'package:fiveminslearn/utils/function.dart';
 import 'package:fiveminslearn/utils/ui.dart';
+import 'package:fiveminslearn/graphql/mutations.dart' as mutations;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dropdown_alert/model/data_alert.dart';
@@ -18,34 +19,6 @@ class LoginContainer extends StatefulWidget {
 }
 
 class _LoginContainerState extends State<LoginContainer> {
-  String login = """
-  mutation Login(\$input: LoginInput!) {
-    login(input: \$input) {
-      token
-      user {
-        id
-        first_name
-        last_name
-        email
-        gender
-        address_line1
-        address_line2
-        city
-        state
-        secret_question
-        dob
-        mobile
-        full_address
-        name
-        activate_date
-        createdAt
-        updatedAt
-        deletedAt
-      }
-    }
-  }
-  """;
-
   @override
   void initState() {
     super.initState();
@@ -77,7 +50,7 @@ class _LoginContainerState extends State<LoginContainer> {
   Widget build(BuildContext context) {
     return Mutation(
       options: MutationOptions(
-          document: gql(login),
+          document: gql(mutations.login),
           onError: (OperationException? error) {
             log("Login api error", error: error?.graphqlErrors[0].message);
             showNotify(
