@@ -14,7 +14,7 @@ bool isValidPassword(String password) {
 Future<void> setUserAuthToken(String token) async {
   LocalStorageUtils storage = LocalStorageUtils();
 
-  return await storage.setItem(constants.USER_AUTH_TOKEN, token);
+  await storage.setItem(constants.USER_AUTH_TOKEN, token);
 }
 
 Future<String?> getUserAuthToken() async {
@@ -26,13 +26,13 @@ Future<String?> getUserAuthToken() async {
 Future<void> removeUserAuthToken() async {
   LocalStorageUtils storage = LocalStorageUtils();
 
-  return await storage.deleteItem(constants.USER_AUTH_TOKEN);
+  await storage.deleteItem(constants.USER_AUTH_TOKEN);
 }
 
 Future<void> setUserDetails(dynamic user) async {
   LocalStorageUtils storage = LocalStorageUtils();
 
-  return await storage.setItem(constants.USER_DETAILS, user);
+  await storage.setItem(constants.USER_DETAILS, user);
 }
 
 Future<dynamic> getUserDetails() async {
@@ -44,5 +44,5 @@ Future<dynamic> getUserDetails() async {
 Future<void> removeUserDetails() async {
   LocalStorageUtils storage = LocalStorageUtils();
 
-  return await storage.deleteItem(constants.USER_DETAILS);
+  await storage.deleteItem(constants.USER_DETAILS);
 }

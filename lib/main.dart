@@ -14,7 +14,7 @@ void main() async {
   );
 
   final AuthLink authLink = AuthLink(
-    getToken: () async => 'Bearer $getUserAuthToken()',
+    getToken: () async => 'Bearer ${await getUserAuthToken()}',
   );
 
   final Link link = authLink.concat(httpLink);
