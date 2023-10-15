@@ -1,5 +1,5 @@
+import 'package:fiveminslearn/containers/blog_list_container.dart';
 import 'package:fiveminslearn/containers/profile_container.dart';
-import 'package:fiveminslearn/screens/blog/blog_list.dart';
 import 'package:fiveminslearn/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,7 @@ class _HomeBottomNavigationBarState extends State<HomeBottomNavigationBar> {
   int selectedIndex = 0;
 
   final List<Widget> screens = const [
-    BlogList(),
+    BlogListContainer(),
     Center(
       child: TextWidget(
         text: "Videos",

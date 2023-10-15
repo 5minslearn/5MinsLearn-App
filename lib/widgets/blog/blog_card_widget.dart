@@ -1,4 +1,5 @@
 import 'package:fiveminslearn/fragments/blog_view_fragment.dart';
+import 'package:fiveminslearn/types/apis/get_blogs_with_pagination_api.dart';
 import 'package:fiveminslearn/widgets/blog/blog_action_widget.dart';
 import 'package:fiveminslearn/widgets/card_widget.dart';
 import 'package:fiveminslearn/widgets/divider_widget.dart';
@@ -38,7 +39,7 @@ class BlogItem {
 Type blogItem = BlogItem;
 
 class BlogCardWidget extends StatelessWidget {
-  final BlogItem? blog;
+  final GetBlogsWithPaginationApi? blog;
 
   const BlogCardWidget({super.key, this.blog});
 
@@ -57,39 +58,39 @@ class BlogCardWidget extends StatelessWidget {
                   direction: Axis.horizontal,
                   runSpacing: 10,
                   children: [
-                    if (blog!.author != null)
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Wrap(
-                            spacing: 10,
-                            alignment: WrapAlignment.start,
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            children: [
-                              if (blog!.author!.profilePic != null)
-                                CircleAvatar(
-                                  radius: 18,
-                                  backgroundImage: AssetImage(
-                                    blog!.author!.profilePic!,
-                                  ),
-                                ),
-                              if (blog!.author!.name != null)
-                                TextWidget(
-                                  text: blog!.author!.name!,
-                                  variant: TextVariant.label,
-                                ),
-                            ],
-                          ),
-                          if (blog!.publishedAt != null)
-                            TextWidget(
-                              text: blog!.publishedAt!,
-                              variant: TextVariant.helper,
-                            )
-                        ],
-                      ),
+                    // if (blog!.author != null)
+                    //   Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //     crossAxisAlignment: CrossAxisAlignment.center,
+                    //     children: [
+                    //       Wrap(
+                    //         spacing: 10,
+                    //         alignment: WrapAlignment.start,
+                    //         crossAxisAlignment: WrapCrossAlignment.center,
+                    //         children: [
+                    //           if (blog!.author!.profilePic != null)
+                    //             CircleAvatar(
+                    //               radius: 18,
+                    //               backgroundImage: AssetImage(
+                    //                 blog!.author!.profilePic!,
+                    //               ),
+                    //             ),
+                    //           if (blog!.author!.name != null)
+                    //             TextWidget(
+                    //               text: blog!.author!.name!,
+                    //               variant: TextVariant.label,
+                    //             ),
+                    //         ],
+                    //       ),
+                    //       if (blog!.publishedAt != null)
+                    //         TextWidget(
+                    //           text: blog!.publishedAt!,
+                    //           variant: TextVariant.helper,
+                    //         )
+                    //     ],
+                    //   ),
                     if (blog!.image != null)
-                      Image.asset(
+                      Image.network(
                         blog!.image!,
                         fit: BoxFit.cover,
                         height: 200,

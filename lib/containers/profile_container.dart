@@ -46,9 +46,9 @@ class _ProfileContainerState extends State<ProfileContainer> {
           );
         },
         onCompleted: (dynamic data) async {
-          if (data != null) {
-            logout();
-          }
+          // if (data != null) {
+          logout();
+          // }
         },
       ),
       builder: (RunMutation runLogoutMutation, QueryResult? result) {
