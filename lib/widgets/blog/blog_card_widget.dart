@@ -104,6 +104,9 @@ class BlogCardWidget extends StatelessWidget {
                         fit: BoxFit.cover,
                         height: 200,
                         width: MediaQuery.of(context).size.width,
+                        errorBuilder: ((context, error, stackTrace) {
+                          return const SizedBox();
+                        }),
                       ),
                     Wrap(
                       runSpacing: 5,
