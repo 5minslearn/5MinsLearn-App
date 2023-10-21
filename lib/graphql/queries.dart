@@ -1,4 +1,4 @@
-const getBlogs = """
+const getBlogsQueryGql = """
 query GetBlogs(\$pagination: PaginatedInput!) {
   get_blogs(pagination: \$pagination) {
     cursor

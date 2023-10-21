@@ -50,7 +50,7 @@ class _LoginContainerState extends State<LoginContainer> {
   Widget build(BuildContext context) {
     return Mutation(
       options: MutationOptions(
-          document: gql(mutations.login),
+          document: gql(mutations.loginMutationGql),
           onError: (OperationException? error) {
             log("Login api error", error: error?.graphqlErrors[0].message);
             showNotify(

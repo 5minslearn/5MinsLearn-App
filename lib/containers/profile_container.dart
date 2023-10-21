@@ -36,7 +36,7 @@ class _ProfileContainerState extends State<ProfileContainer> {
   Widget build(BuildContext context) {
     return Mutation(
       options: MutationOptions(
-        document: gql(mutations.logout),
+        document: gql(mutations.logoutMutationGql),
         onError: (OperationException? error) {
           log("Logout api error", error: error?.graphqlErrors[0].message);
           showNotify(

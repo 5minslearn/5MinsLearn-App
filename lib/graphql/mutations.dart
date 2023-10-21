@@ -1,4 +1,4 @@
-String login = """
+String loginMutationGql = """
 mutation Login(\$input: LoginInput!) {
   login(input: \$input) {
     token
@@ -26,8 +26,26 @@ mutation Login(\$input: LoginInput!) {
 }
 """;
 
-const String logout = """
+const String logoutMutationGql = """
 mutation {
   logout
+}
+""";
+
+const String addBookmarkMutationGql = """
+mutation Add_bookmark(\$input: BookmarkInput!) {
+  add_bookmark(input: \$input) {
+    blogId
+    message
+  }
+}
+""";
+
+const String removeBookmarkMutationGql = """
+mutation Remove_bookmark(\$input: BookmarkInput!) {
+  remove_bookmark(input: \$input) {
+    blogId
+    message
+  }
 }
 """;

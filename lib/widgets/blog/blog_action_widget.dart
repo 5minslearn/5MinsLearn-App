@@ -2,19 +2,23 @@ import 'package:fiveminslearn/widgets/icon_button_widget.dart';
 import 'package:flutter/material.dart';
 
 class BlogActionWidget extends StatelessWidget {
+  final int blogId;
   final Function? onPressShare;
-  final Function? onPressAddBookMark;
-  final Function? onPressRemoveBookMark;
   final Function? onPressMore;
   final bool? isBookMarked;
+  final void Function(int blogId)? onPressAddBookmark;
+  final void Function(int blogId)? onPressRemoveBookmark;
+  final bool? isBookmarkLoading;
 
   const BlogActionWidget({
     super.key,
+    required this.blogId,
+    this.onPressAddBookmark,
+    this.onPressRemoveBookmark,
     this.onPressShare,
-    this.onPressAddBookMark,
-    this.onPressRemoveBookMark,
     this.onPressMore,
     this.isBookMarked,
+    this.isBookmarkLoading,
   });
 
   void onPressedShare() {
@@ -25,17 +29,17 @@ class BlogActionWidget extends StatelessWidget {
     }
   }
 
-  void onPressedAddBookMark() {
+  void onPressedAddBookmark() {
     try {
-      onPressAddBookMark!();
+      onPressAddBookmark!(blogId);
     } catch (e) {
       //
     }
   }
 
-  void onPressedRemoveBookMark() {
+  void onPressedRemoveBookmark() {
     try {
-      onPressRemoveBookMark!();
+      onPressRemoveBookmark!(blogId);
     } catch (e) {
       //
     }
@@ -56,6 +60,8 @@ class BlogActionWidget extends StatelessWidget {
       children: [
         Wrap(
           spacing: 5,
+          alignment: WrapAlignment.center,
+          crossAxisAlignment: WrapCrossAlignment.center,
           children: [
             IconButtonWidget(
               icon: Icons.share,
@@ -65,11 +71,11 @@ class BlogActionWidget extends StatelessWidget {
               isBookMarked!
                   ? IconButtonWidget(
                       icon: Icons.bookmark_remove,
-                      onPress: onPressedRemoveBookMark,
+                      onPress: onPressedRemoveBookmark,
                     )
                   : IconButtonWidget(
                       icon: Icons.bookmark_add_outlined,
-                      onPress: onPressAddBookMark,
+                      onPress: onPressedAddBookmark,
                     ),
             IconButtonWidget(
               icon: Icons.more_vert,

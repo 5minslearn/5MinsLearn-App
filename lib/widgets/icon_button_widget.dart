@@ -6,6 +6,7 @@ class IconButtonWidget extends StatelessWidget {
   final ButtonStyle? buttonStyle;
   final Function? onPress;
   final Color? iconColor;
+  final bool? isDisabled;
 
   const IconButtonWidget({
     super.key,
@@ -14,6 +15,7 @@ class IconButtonWidget extends StatelessWidget {
     this.buttonStyle,
     this.onPress,
     this.iconColor,
+    this.isDisabled,
   });
 
   void onPressed() {
@@ -27,7 +29,7 @@ class IconButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: onPressed,
+      onPressed: (isDisabled != null && isDisabled == false) ? null : onPressed,
       style: buttonStyle,
       icon: Icon(
         icon,

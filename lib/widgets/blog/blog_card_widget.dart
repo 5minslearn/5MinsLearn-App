@@ -40,8 +40,17 @@ Type blogItem = BlogItem;
 
 class BlogCardWidget extends StatelessWidget {
   final GetBlogsWithPaginationApi? blog;
+  final void Function(int blogId) onPressAddBookmark;
+  final void Function(int blogId) onPressRemoveBookmark;
+  final bool? isBookmarkLoading;
 
-  const BlogCardWidget({super.key, this.blog});
+  const BlogCardWidget({
+    super.key,
+    required this.onPressAddBookmark,
+    required this.onPressRemoveBookmark,
+    this.blog,
+    this.isBookmarkLoading,
+  });
 
   void onPress(BuildContext context) {
     Navigator.push(context, MaterialPageRoute(builder: (context) => BlogViewFragment(url: blog!.url!)));
@@ -117,7 +126,11 @@ class BlogCardWidget extends StatelessWidget {
                       children: [
                         const DividerWidget(),
                         BlogActionWidget(
+                          blogId: blog!.id,
                           isBookMarked: blog!.isBookMarked!,
+                          onPressAddBookmark: onPressAddBookmark,
+                          onPressRemoveBookmark: onPressRemoveBookmark,
+                          isBookmarkLoading: isBookmarkLoading,
                         ),
                       ],
                     )
