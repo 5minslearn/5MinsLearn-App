@@ -46,3 +46,11 @@ Future<void> removeUserDetails() async {
 
   await storage.deleteItem(constants.USER_DETAILS);
 }
+
+int? stringToInt(dynamic value) {
+  if (value != null && value.isNotEmpty) {
+    return int.parse(value);
+  }
+
+  return null;
+}

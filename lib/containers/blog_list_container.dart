@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:fiveminslearn/constants.dart';
 import 'package:fiveminslearn/graphql/mutations.dart';
 import 'package:fiveminslearn/graphql/queries.dart';
 import 'package:fiveminslearn/screens/blog/blog_list.dart';
@@ -19,7 +20,7 @@ class BlogListContainer extends StatefulHookWidget {
 
 class _BlogListContainerState extends State<BlogListContainer> {
   int cursor = 0;
-  int limit = 10;
+  int nextCursor = 0;
   bool isBookmarkLoading = false;
 
   void updateBookmarkResult(GraphQLDataProxy cache, {required String blogId, required bool isBookmarked}) {
@@ -167,12 +168,12 @@ class _BlogListContainerState extends State<BlogListContainer> {
         variables: {
           "pagination": {
             "cursor": cursor,
-            "limit": limit,
+            "limit": BLOGS_PER_PAGE_LIMIT,
           }
         },
         onComplete: (data) {
           setState(() {
-            // cursor = data['get_blogs']?['cursor'];
+            nextCursor = data['get_blogs']?['cursor'];
           });
         },
         onError: (error) {
@@ -209,6 +210,9 @@ class _BlogListContainerState extends State<BlogListContainer> {
           onPressAddBookmark: onPressAddBookmark,
           onPressRemoveBookmark: onPressRemoveBookmark,
           isBookmarkLoading: isBookmarkLoading,
+          loadMore: fetchMore,
+          nextCursor: nextCursor,
+          isLoading: result.isLoading,
         );
       }),
     );

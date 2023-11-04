@@ -6,6 +6,7 @@ import 'package:fiveminslearn/widgets/divider_widget.dart';
 import 'package:fiveminslearn/widgets/text_widget.dart';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class Author {
   String? name;
@@ -68,36 +69,36 @@ class BlogCardWidget extends StatelessWidget {
                   runSpacing: 10,
                   children: [
                     // if (blog!.author != null)
-                    //   Row(
-                    //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //     crossAxisAlignment: CrossAxisAlignment.center,
-                    //     children: [
-                    //       Wrap(
-                    //         spacing: 10,
-                    //         alignment: WrapAlignment.start,
-                    //         crossAxisAlignment: WrapCrossAlignment.center,
-                    //         children: [
-                    //           if (blog!.author!.profilePic != null)
-                    //             CircleAvatar(
-                    //               radius: 18,
-                    //               backgroundImage: AssetImage(
-                    //                 blog!.author!.profilePic!,
-                    //               ),
-                    //             ),
-                    //           if (blog!.author!.name != null)
-                    //             TextWidget(
-                    //               text: blog!.author!.name!,
-                    //               variant: TextVariant.label,
-                    //             ),
-                    //         ],
-                    //       ),
-                    //       if (blog!.publishedAt != null)
-                    //         TextWidget(
-                    //           text: blog!.publishedAt!,
-                    //           variant: TextVariant.helper,
-                    //         )
-                    //     ],
-                    //   ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        // Wrap(
+                        //   spacing: 10,
+                        //   alignment: WrapAlignment.start,
+                        //   crossAxisAlignment: WrapCrossAlignment.center,
+                        //   children: [
+                        //     if (blog!.author!.profilePic != null)
+                        //       CircleAvatar(
+                        //         radius: 18,
+                        //         backgroundImage: AssetImage(
+                        //           blog!.author!.profilePic!,
+                        //         ),
+                        //       ),
+                        //     if (blog!.author!.name != null)
+                        //       TextWidget(
+                        //         text: blog!.author!.name!,
+                        //         variant: TextVariant.label,
+                        //       ),
+                        //   ],
+                        // ),
+                        if (blog!.createdAt != null)
+                          TextWidget(
+                            text: DateFormat.yMMMEd().format(DateTime.parse(blog!.createdAt!)),
+                            variant: TextVariant.helper,
+                          )
+                      ],
+                    ),
                     if (blog!.image != null)
                       Image.network(
                         blog!.image!,
