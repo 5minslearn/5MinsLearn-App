@@ -50,25 +50,31 @@ class _LoginContainerState extends State<LoginContainer> {
   Widget build(BuildContext context) {
     return Mutation(
       options: MutationOptions(
-          document: gql(mutations.loginMutationGql),
-          onError: (OperationException? error) {
-            log("Login api error", error: error?.graphqlErrors[0].message);
-            showNotify(
-              title: "",
-              message: error!.graphqlErrors[0].message,
-              type: TypeAlert.error,
-            );
-          },
-          onCompleted: ((dynamic data) async {
-            if (data != null) {
-              await setUserAuthToken(data['login']['token']);
-              await setUserDetails(data['login']['user']);
+        document: gql(mutations.loginMutationGql),
+        onError: (OperationException? error) {
+          log("Login api error", error: error?.graphqlErrors[0].message);
+          showNotify(
+            title: "",
+            message: error!.graphqlErrors[0].message,
+            type: TypeAlert.error,
+          );
+        },
+        onCompleted: ((dynamic data) async {
+          if (data != null) {
+            await setUserAuthToken(data['login']['token']);
+            await setUserDetails(data['login']['user']);
 
-              goToHome();
-            }
-          })),
+            goToHome();
+          }
+        }),
+      ),
       builder: (RunMutation runMutation, QueryResult? result) {
-        return Login(login: runMutation, onSkipLogin: onSkipLogin, onPressRegister: onPressRegister, result: result);
+        return Login(
+          login: runMutation,
+          onSkipLogin: onSkipLogin,
+          onPressRegister: onPressRegister,
+          result: result,
+        );
       },
     );
   }

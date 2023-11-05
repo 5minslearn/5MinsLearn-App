@@ -25,7 +25,7 @@ class CardWidget extends StatelessWidget {
     }
 
     return InkWell(
-      onTap: onTap,
+      onTap: onPress != null ? onTap : null,
       child: Card(
         shape: shape ??
             const RoundedRectangleBorder(

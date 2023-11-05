@@ -66,7 +66,10 @@ class _RegisterState extends State<Register> {
   }
 
   void register() {
-    showAlertDialog(context, "Registration success");
+    showAlertDialog(
+      context,
+      title: "Registration success",
+    );
     resetForm();
   }
 
