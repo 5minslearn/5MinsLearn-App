@@ -24,7 +24,7 @@ class _ProfileState extends State<Profile> {
     showAlertDialog(
       context,
       title: "Logout",
-      message: "Are you sure to logout?",
+      message: "Are you sure you want to logout?",
       onPressAccept: logout,
       onPressReject: () => {},
     );
