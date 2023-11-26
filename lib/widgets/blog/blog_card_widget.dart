@@ -131,7 +131,7 @@ class BlogCardWidget extends StatelessWidget {
                         const DividerWidget(),
                         BlogActionWidget(
                           blogId: blog!.id,
-                          isBookMarked: blog!.isBookMarked!,
+                          isBookMarked: blog!.isBookMarked,
                           onPressAddBookmark: onPressAddBookmark,
                           onPressRemoveBookmark: onPressRemoveBookmark,
                           isBookmarkLoading: isBookmarkLoading,
