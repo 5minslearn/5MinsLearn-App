@@ -98,9 +98,9 @@ class _LoginState extends State<Login> {
                   shouldShowMoreMenu: false,
                   title: "Login",
                 ),
-                const Wrap(
+                Wrap(
                   runSpacing: 5,
-                  children: [
+                  children: const [
                     TextWidget(
                       variant: TextVariant.title,
                       text: "Hello, Welcome Back 👋",
