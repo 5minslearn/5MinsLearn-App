@@ -8,7 +8,7 @@ import 'package:flutter_dropdown_alert/dropdown_alert.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 void main() async {
-  await dotenv.load(fileName: ".env");
+  // await dotenv.load(fileName: ".env");
 
   await initHiveForFlutter();
 
