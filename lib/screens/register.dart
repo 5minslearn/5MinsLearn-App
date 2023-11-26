@@ -7,7 +7,9 @@ import 'package:fiveminslearn/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
 class Register extends StatefulWidget {
-  const Register({super.key});
+  final Function register;
+
+  const Register({super.key, required this.register});
 
   @override
   State<Register> createState() => _RegisterState();
@@ -66,6 +68,10 @@ class _RegisterState extends State<Register> {
   }
 
   void register() {
+    widget.register({
+      "input": {"email": email, "password": password, "first_name": name}
+    });
+
     showAlertDialog(
       context,
       title: "Registration success",
@@ -113,9 +119,9 @@ class _RegisterState extends State<Register> {
                 title: "Register",
                 goBack: goBack,
               ),
-              const Wrap(
+              Wrap(
                 runSpacing: 5,
-                children: [
+                children: const [
                   TextWidget(
                     variant: TextVariant.title,
                     text: "Hello, Welcome 👋",

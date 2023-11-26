@@ -1,8 +1,8 @@
 import 'dart:developer';
 
-import 'package:fiveminslearn/containers/register_container.dart';
+import 'package:fiveminslearn/containers/login_container.dart';
 import 'package:fiveminslearn/navigation/home_bottom_navigation_bar.dart';
-import 'package:fiveminslearn/screens/login.dart';
+import 'package:fiveminslearn/screens/register.dart';
 import 'package:fiveminslearn/utils/function.dart';
 import 'package:fiveminslearn/utils/ui.dart';
 import 'package:fiveminslearn/graphql/mutations.dart' as mutations;
@@ -11,14 +11,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dropdown_alert/model/data_alert.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-class LoginContainer extends StatefulWidget {
-  const LoginContainer({super.key});
+class RegisterContainer extends StatefulWidget {
+  const RegisterContainer({super.key});
 
   @override
-  State<LoginContainer> createState() => _LoginContainerState();
+  State<RegisterContainer> createState() => _RegisterContainerState();
 }
 
-class _LoginContainerState extends State<LoginContainer> {
+class _RegisterContainerState extends State<RegisterContainer> {
   @override
   void initState() {
     super.initState();
@@ -35,10 +35,10 @@ class _LoginContainerState extends State<LoginContainer> {
     );
   }
 
-  void onPressRegister() {
+  void onPressLogin() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const RegisterContainer()),
+      MaterialPageRoute(builder: (context) => const LoginContainer()),
     );
   }
 
@@ -50,9 +50,9 @@ class _LoginContainerState extends State<LoginContainer> {
   Widget build(BuildContext context) {
     return Mutation(
       options: MutationOptions(
-        document: gql(mutations.loginMutationGql),
+        document: gql(mutations.registerMutationGql),
         onError: (OperationException? error) {
-          log("Login api error", error: error?.graphqlErrors[0].message);
+          log("Register error", error: error?.graphqlErrors[0].message);
           showNotify(
             title: "",
             message: error!.graphqlErrors[0].message,
@@ -61,19 +61,16 @@ class _LoginContainerState extends State<LoginContainer> {
         },
         onCompleted: ((dynamic data) async {
           if (data != null) {
-            await setUserAuthToken(data['login']['token']);
-            await setUserDetails(data['login']['user']);
+            await setUserAuthToken(data['register']['token']);
+            await setUserDetails(data['register']['user']);
 
             goToHome();
           }
         }),
       ),
       builder: (RunMutation runMutation, QueryResult? result) {
-        return Login(
-          login: runMutation,
-          onSkipLogin: onSkipLogin,
-          onPressRegister: onPressRegister,
-          result: result,
+        return Register(
+          register: runMutation,
         );
       },
     );
