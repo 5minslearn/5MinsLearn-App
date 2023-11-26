@@ -173,7 +173,7 @@ class _BlogListContainerState extends State<BlogListContainer> {
         },
         onComplete: (data) {
           setState(() {
-            nextCursor = data['get_blogs']?['cursor'];
+            nextCursor = data['get_blogs']['cursor'] | 0;
           });
         },
         onError: (error) {
